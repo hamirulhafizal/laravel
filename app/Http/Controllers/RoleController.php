@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
 
     public function __construct() {
     }
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,10 +22,8 @@ class UserController extends Controller
             abort(403);
         }
         
-        $users = User::paginate(20);
-
-        return view('admin.user.index', [ 'users' => $users ]);
-
+        $roles = Role::all();
+        return view('admin.role.index',[ 'roles' => $roles ]);
     }
 
     /**
@@ -38,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.role.create');
     }
 
     /**
@@ -49,20 +44,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // echo  'Simpan pengguna baru';
-
-        $form_data = $request->validate([
-            'name' => 'required|min:5|max:255',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
+        $data = $request->validate([
+            'name' => 'required|min:5|max:100'
         ]);
 
-        $form_data['password'] = Hash::make( $form_data['password'] );
+        $role = Role::create($data);
 
-        $user = User::create($form_data);
-
-        return redirect('admin/user')->with('success', "Pengguna {$user->name} ($user->id) telah ditambah");
-
+        return redirect('/admin/role')->with('success',"Peranan <b>{$role->name} ({$role->id})</b> telah berjaya disimpan.");
     }
 
     /**
@@ -84,12 +72,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
-        $user = User::find($id);
-        $roles = Role::all();
-        // dd($user);
-
-        return view('admin.user.edit', [ 'user' => $user, 'roles' => $roles ]);
+        //
     }
 
     /**
@@ -101,21 +84,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        $form_data = $request->validate([
-            'name' => 'required|min:5|max:255',
-            'email' => 'required|email'
-        ]);
-
-        $user->name = $form_data['name'];
-        $user->email = $form_data['email'];
-
-        $user->save();
-
-        $user->roles()->sync( $request->roles );
-
-        return redirect('admin/user')->with('success', "Pengguna {$user->name} ($id) telah dikemaskini");
+        //
     }
 
     /**

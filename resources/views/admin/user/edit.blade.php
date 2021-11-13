@@ -36,6 +36,24 @@
                 </div>
             </div>
 
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Peranan</label>
+                <div class="col-sm-10">
+                    @foreach($roles as $role)
+
+                    <div class="custom-control custom-checkbox small">
+                        <input  
+                            @if( in_array($role->id, $user->roles->pluck('id')->toArray() ))
+                                checked
+                            @endif
+                        type="checkbox" class="custom-control-input" 
+                        name="roles[]" value="{{$role->id}}" id="role_{{$role->id}}">
+                        <label class="custom-control-label" for="role_{{$role->id}}">{{$role->name}}</label>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
             <button class="btn btn-lg btn-primary">Simpan</button>
 
         </form>
