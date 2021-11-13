@@ -8,7 +8,7 @@ class MemberController extends Controller
 {
     // --- /member
     public function index() {
-        return view('member.dashboard');
+        return view('dashboard',  );
     }
 
     // --- /member/profile

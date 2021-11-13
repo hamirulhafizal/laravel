@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
 
 /*
@@ -26,9 +27,11 @@ Route::get('/member', [ MemberController::class, 'index' ]);
 
 Route::get('/member/profile', [ MemberController::class, 'profile' ]);
 
+Route::get('/dashboard', [ 
+	MemberController::class,
+	'index'])
+	->name('dashbaord')
+	->middleware(['auth']);
 
-
-Route::view('dashboard', 'dashboard')
-	->name('dashboard')
-	->middleware(['auth', 'verified']);
+Route::resource('admin/user', UserController::class);
 
