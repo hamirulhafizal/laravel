@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class PlanController extends Controller
 {
-
-    public function __construct() {
-    }
-    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $roles = Role::all();
-        return view('admin.role.index',[ 'roles' => $roles ]);
+    {
+        $plans = Plan::all();
+        return view('admin.plan.index', [ 'plans' => $plans ]);
     }
 
     /**
@@ -29,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        return view('admin.plan.create');
     }
 
     /**
@@ -41,12 +37,16 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|min:5|max:100'
+            'name' => 'required|min:5|max:100',
+            'price' => 'required|numeric',
+            'duration' => 'required|integer',
         ]);
 
-        $role = Role::create($data);
+        $data['price'] = abs(floor($data['price'] * 100));
 
-        return redirect('/admin/role')->with('success',"Peranan <b>{$role->name} ({$role->id})</b> telah berjaya disimpan.");
+        $plan = Plan::create($data);
+
+        return redirect('/admin/plan')->with('success',"Pelan langganan <b>{$plan->name} ({$plan->id})</b> telah berjaya disimpan.");
     }
 
     /**
@@ -91,10 +91,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::find($id);
-        $role->delete();    
-
-        return redirect('/admin/role')->with('success',"Peranan <b>{$role->name} ({$role->id})</b> telah berjaya dipadam.");
-
+        //
     }
 }

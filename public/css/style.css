@@ -1,0 +1,5 @@
+.bg-klcc-image {
+    background: url(/img/klcc.jpg);
+    background-position: center;
+    background-size: cover;    
+}

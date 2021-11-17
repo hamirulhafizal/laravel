@@ -21,10 +21,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('is-admin')) {
-            abort(403);
-        }
-        
         $users = User::paginate(20);
 
         return view('admin.user.index', [ 'users' => $users ]);

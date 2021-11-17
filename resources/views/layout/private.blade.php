@@ -70,6 +70,7 @@
                         <h6 class="collapse-header">Pengurusan Admin</h6>
                         <a class="collapse-item" href="/admin/role">Peranan</a>
                         <a class="collapse-item" href="/admin/user">Pengguna</a>
+                        <a class="collapse-item" href="/admin/plan">Pelan Langganan</a>
                     </div>
                 </div>
             </li>

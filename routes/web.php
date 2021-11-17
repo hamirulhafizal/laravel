@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\SignUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,15 @@ Route::get('/dashboard', [
 	->name('dashbaord')
 	->middleware(['auth']);
 
-Route::resource('admin/user', UserController::class);
-Route::resource('admin/role', RoleController::class);
+
+Route::middleware(['auth', 'can:is-admin'])->group(function(){
+
+	Route::resource('admin/user', UserController::class);
+	Route::resource('admin/role', RoleController::class);
+	Route::resource('admin/plan', PlanController::class);
+	
+});
+
+Route::get('/signup', [ SignUpController::class, 'index' ]);
+
 

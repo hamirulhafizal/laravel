@@ -34,7 +34,9 @@
                     <td>
                         <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                 
-                        <form method="post" class="d-inline"  action="{{ route('role.destroy', $role->id) }}" onsubmit="return confirm('Are you sure you want to delete {{$role->name}} ({{$role->id}})?');" >
+                        <form method="post" class="d-inline" 
+                        action="{{ route('role.destroy', $role->id) }}"
+                        onsubmit="return confirm('Are you sure you want to delete {{$role->name}} ({{$role->id}})?');" >
                             @csrf 
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">DELETE</button>

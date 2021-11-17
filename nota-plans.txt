@@ -1,0 +1,31 @@
+
+
+    plans
+    - id
+    - name
+    - price : integer 
+    - duration : integer 
+
+    payments 
+    - id 
+    - payment_gateway
+    - transaction_id 
+    - amount 
+    - created_at 
+
+    subscription
+    - id
+    - user_id 
+    - expire_at 
+    - last_payment_id
+    - created_at
+    - updated_at
+
+apabila user belum ada subscription, expire_at = hari ini + plans.duration
+ababila user dah ada subscription :
+    - kalau dah expire, expire_at = hari ini + plans.duration
+    - kalau belum expire, expire_at = expire_at + plans.duration 
+
+
+
+    

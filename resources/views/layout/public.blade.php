@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/template/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -30,7 +31,7 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block bg-klcc-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
 
@@ -39,6 +40,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+            Photo by <a href="https://unsplash.com/@p_kuzovkova?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Polina Kuzovkova</a> on <a href="https://unsplash.com/s/photos/klcc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
             </div>
         </div>
 
