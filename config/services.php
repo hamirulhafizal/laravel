@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'securepay' => [
+        'env' => env('SECUREPAY_ENV', 'sandbox'),
+        'uid' => env('SECUREPAY_UID'),
+        'auth_token' => env('SECUREPAY_AUTH_TOKEN'),
+        'checksum_token' => env('SECUREPAY_CHECKSUM_TOKEN'),
+    ],
+
 ];

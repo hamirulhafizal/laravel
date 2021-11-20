@@ -11,9 +11,10 @@
     - payment_gateway
     - transaction_id 
     - amount 
+    - transaction_data
     - created_at 
 
-    subscription
+    subscriptions
     - id
     - user_id 
     - expire_at 
