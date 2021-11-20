@@ -9,7 +9,7 @@
     payments 
     - id 
     - payment_gateway
-    - transaction_id 
+    - order_id 
     - amount 
     - transaction_data
     - created_at 
@@ -28,5 +28,10 @@ ababila user dah ada subscription :
     - kalau belum expire, expire_at = expire_at + plans.duration 
 
 
+Contoh parameter untuk SecurePay dalam .env 
+==========================    
+SECUREPAY_ENV=sandbox
+SECUREPAY_UID=edeaaf0d-779b-4285-81aa-478d201812a6
+SECUREPAY_AUTH_TOKEN=-bSzGXJ_j5vK_CHzTCE5
+SECUREPAY_CHECKSUM_TOKEN=ddf6aa92104e8831ed07db97f901c8d9d7fe60a9c84ca73a9363cac4bd540dfa
 
-    
