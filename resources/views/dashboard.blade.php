@@ -7,6 +7,9 @@
 
     <div>You are logged in!</div>
 
+    @if($subscription !== null) 
+    <p><strong>Expire At:</strong> {{$subscription->expire_at}}</p>
+    @endif
     <form method="POST" action="{{ route('logout') }}">
         @csrf
 

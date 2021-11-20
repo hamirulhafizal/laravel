@@ -6,7 +6,7 @@
     
     <p>&nbsp;</p>
 
-    <a href="/register" class="btn btn-primary btn-user btn-block">Register Account</a>
+    <a href="/signup" class="btn btn-primary btn-user btn-block">Register Account</a>
     <a href="/login" class="btn btn-secondary btn-user btn-block">Login</a>
 
 @endsection

@@ -14,9 +14,20 @@
                 <h5>RM {{ number_format( ($plan->price / 100), 2 ) }}</h5>
                 <p class="mb-5"><strong>Tempoh :</strong> {{ $plan->duration }} hari</p>
 
+
+                @auth 
+            <a href="/signup/review/{{ $plan->id }}" class="plan-button btn btn-warning">
+                Langgan Sekarang
+            </a>
+            @endauth 
+
+
+                @guest 
                 <button data-plan-id="{{$plan->id}}" class="plan-button btn btn-warning" data-toggle="modal" data-target="#loginOrRegister-modal">
                     Langgan Sekarang
                 </button>
+
+                @endguest
             </div>
         </div>
     </div>
@@ -97,28 +108,36 @@
   <form method="POST" class="user p-5" action="{{ route('register') }}">
         @csrf
 
+        <div class="alert alert-danger d-none" id="register-alert">
+        Sila semak borang pendaftaran.
+    </div>
+
+
+
         <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input class="form-control form-control-user" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Name">
+                                        <input class="form-control form-control-user" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" id="register-form-name" placeholder="Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control form-control-user"  type="email" name="email" value="{{ old('email') }}" required placeholder="Email">
+                                        <input class="form-control form-control-user"  type="email" name="email" value="{{ old('email') }}" id="register-form-email"  required placeholder="Email">
                                     </div>
         </div>
 
         <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input class="form-control form-control-user" type="password" name="password" required autocomplete="new-password" placeholder="Password" >
+                                        <input class="form-control form-control-user" type="password" name="password" required autocomplete="new-password" id="register-form-password"  placeholder="Password" >
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control form-control-user" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                                        <input class="form-control form-control-user" type="password" name="password_confirmation" required autocomplete="new-password" id="register-form-password-confirmation"  placeholder="Confirm Password">
                                     </div>
         </div>
 
         <div>
-            <button type="submit" class="btn btn-primary btn-user btn-block">
+
+            <button type="button" id="register-button" class="btn btn-primary btn-user btn-block">
                 {{ __('Register') }}
             </button>
+
         </div>
 
     </form>

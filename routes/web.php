@@ -48,5 +48,6 @@ Route::middleware(['auth', 'can:is-admin'])->group(function(){
 Route::get('/signup', [ SignUpController::class, 'index' ]);
 Route::get('/signup/review/{id}', [ SignUpController::class, 'review' ]);
 Route::post('/signup/go/{payment_gateway}', [ SignUpController::class, 'go' ])->name('signup.go');
+Route::post('/signup/thankyou/{payment_gateway}', [ SignUpController::class, 'thankyou' ])->name('signup.thankyou');
 
 

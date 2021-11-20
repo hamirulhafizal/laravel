@@ -28,4 +28,29 @@ $(document).ready(function(){
             return false;
 
         });
+
+
+        $('#register-button').on('click', function(e){ 
+
+            $.ajax({
+                type: "POST",
+                url: '/register',
+                data: {
+                    name : $('#register-form-name').val(),
+                    email : $('#register-form-email').val(),
+                    password : $('#register-form-password').val(),
+                    password_confirmation : $('#register-form-password-confirmation').val(),
+                    _token : $('input[name=_token]').val()
+                }
+            }).done(function( data ) {
+                console.log(data);
+                window.location.href = '/signup/review/' + plan_id;
+            })
+            .fail(function() {
+                $('#register-alert').removeClass('d-none');
+            });
+
+            return false;
+        });
+
     });

@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
     // --- /member
     public function index() {
-        return view('dashboard',  );
+
+        $subscription = Subscription::where('user_id', Auth::id() )->first();
+
+        return view('dashboard', [ 'subscription' => $subscription ] );
     }
 
     // --- /member/profile

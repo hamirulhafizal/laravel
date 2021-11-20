@@ -49,7 +49,7 @@ class SecurePay
         if (config('services.securepay.env') == 'sandbox') {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         }
-        
+
         curl_exec($ch);
         
         $output = curl_exec($ch);   
@@ -73,7 +73,14 @@ class SecurePay
 
         $string = implode('|', $data);
 
+        //dd($string);
+
         $sign = hash_hmac('sha256', $string, $this->checksum_token);
+
+        // echo "<pre>$sign<br>$checksum<br>";
+
+        // var_dump($data);
+        // echo "</pre>";
 
         return ($sign == $checksum);
     }

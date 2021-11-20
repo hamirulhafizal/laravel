@@ -34,31 +34,6 @@
                                     </div>
         </div>
 
-
-        <!-- <div>
-            <label>{{ __('Name') }}</label>
-            <input type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
-        </div>
-
-        <div>
-            <label>{{ __('Email') }}</label>
-            <input type="email" name="email" value="{{ old('email') }}" required />
-        </div>
-
-        <div>
-            <label>{{ __('Password') }}</label>
-            <input type="password" name="password" required autocomplete="new-password" />
-        </div>
-
-        <div>
-            <label>{{ __('Confirm Password') }}</label>
-            <input type="password" name="password_confirmation" required autocomplete="new-password" />
-        </div>
-
-        <a href="{{ route('login') }}">
-            {{ __('Already registered?') }}
-        </a>
--->
         <div>
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 {{ __('Register') }}
