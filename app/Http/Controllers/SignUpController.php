@@ -34,6 +34,8 @@ class SignUpController extends Controller
 
         // dd($request);
 
+        $verified = false;
+
         switch($payment_gateway) {
             case 'billplz' :
                 break;
@@ -41,12 +43,12 @@ class SignUpController extends Controller
                 break;
             case 'securepay' :
                 $sp = new SecurePay;
-                $verified = $sp->verify($request);
 
-                // dd($verified);
+                if (isset($request->checksum)) {
+                    $verified = $sp->verify($request);
+                }
 
-//                if($verified) {
-                if(true) {
+                if($verified) {
                     $payment = Payment::where('order_number', $request->order_number)->first();
 
                     $transaction_data = json_decode( $payment->transaction_data );
@@ -78,13 +80,11 @@ class SignUpController extends Controller
                         $today = Carbon::now();
                         // dd($subscription->expire_at);
 
-                        $expire_at = new Carbon( $subscription->expire_at );
-
                         if (($subscription->expire_at === null) 
-                            || ($expire_at->lessThan($today) )) {
+                            || ($subscription->expire_at->lessThan($today) )) {
                                 $subscription->expire_at = $today->addDays( $transaction_data->duration );
                         } else {
-                            $subscription->expire_at = $expire_at->addDays( $transaction_data->duration );
+                            $subscription->expire_at = $subscription->expire_at->addDays( $transaction_data->duration );
                         }
 
                         $subscription->last_payment_id = $payment->id;
@@ -92,14 +92,11 @@ class SignUpController extends Controller
                         $subscription->save();
 
                     }
-                } else {
-                    // non verified payment --- to log attempt
-                }
-
+                } 
                 break;
         }
 
-        return view('signup.thankyou');
+        return view('signup.thankyou', [ 'verified' => $verified ]);
 
     }
 

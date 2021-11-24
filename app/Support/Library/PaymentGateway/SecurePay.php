@@ -65,21 +65,30 @@ class SecurePay
     public function verify(Request $request)
     {
 
+        $rawdata = file_get_contents("php://input");
         $data = $request->all();
+
         ksort($data);
 
         $checksum = $data['checksum'];
         unset($data['checksum']);
+        $ak = array_keys($data);
 
         $string = implode('|', $data);
 
-        //dd($string);
-
         $sign = hash_hmac('sha256', $string, $this->checksum_token);
 
-        // echo "<pre>$sign<br>$checksum<br>";
-
+        // echo "<pre>STRING: $string<br>SIGN: $sign<br>CHECKSUM: $checksum<br>";
+        // echo 'KEYS: '.implode('|', $ak).'<br>';
+        // echo "RAW POST:<br>";
+        // var_dump($rawdata);
+        // echo "<br>";
+        // echo "POST:<br>";
         // var_dump($data);
+        // echo 'URL: '.$this->url.'<br>';
+        // echo 'UID: '.$this->uid.'<br>';
+        // echo 'TOKEN: '.$this->auth_token.'<br>';
+        // echo 'CHECKSUM TOKEN: '.$this->checksum_token.'<br>';
         // echo "</pre>";
 
         return ($sign == $checksum);

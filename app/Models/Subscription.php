@@ -13,4 +13,9 @@ class Subscription extends Model
         'last_payment_id',
         'expire_at'
     ];
+
+    protected $casts = [
+        'expire_at' => 'datetime'
+    ];
+
 }

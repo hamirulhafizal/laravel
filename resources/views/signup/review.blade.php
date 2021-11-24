@@ -11,7 +11,7 @@
     <div class="card-body">
         <h5>Pelan {{ $plan->name }}</h5>
         <p>Tempoh : {{ $plan->duration }}</p>
-        <p>RM {{ number_format( ($plan->price / 100), 2 ) }}</p>
+        <p>{{ $plan->money_price }}</p>
     </div>
 </div>
 

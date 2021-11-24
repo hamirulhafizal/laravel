@@ -11,7 +11,7 @@
         <div class="card shadow">
             <div class="card-body">
                 <h4>{{ $plan->name }}</h4>
-                <h5>RM {{ number_format( ($plan->price / 100), 2 ) }}</h5>
+                <h5>{{ $plan->money_price }}</h5>
                 <p class="mb-5"><strong>Tempoh :</strong> {{ $plan->duration }} hari</p>
 
 

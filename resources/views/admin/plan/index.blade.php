@@ -35,7 +35,7 @@
                 <tr>
                     <td>{{$plan->id}}</td>
                     <td>{{$plan->name}}</td>
-                    <td>RM {{ number_format( ($plan->price / 100), 2 ) }}</td>
+                    <td>{{ $plan->money_price }}</td>
                     <td>{{$plan->duration}}</td>
                     <td>
                         <a href="{{ route('plan.edit', $plan->id) }}" class="btn btn-sm btn-primary">EDIT</a>
